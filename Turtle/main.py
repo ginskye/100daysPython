@@ -10,7 +10,7 @@ cat.color("deeppink")
 colormode(255)
 #cat.pencolor("blue")
 
-def color_rand(t):
+def color_rand():
     first = random.randint(0, 255)
     second = random.randint(0, 255)
     third = random.randint(0, 255)
@@ -47,7 +47,7 @@ def calc_degrees(sides):
 
 def shape(t, sides, count =0):
     """Takes in number of sides and turtle object to draw shape with that number sides"""
-    t.pencolor(color_rand(t))
+    t.pencolor(color_rand())
     deg = calc_degrees(sides)
     while count < sides:
         t.forward(100)
@@ -58,18 +58,21 @@ def rand_walk(t, long):
     """returns a random path until it hits the length entered"""
     count = 0
     t.pensize(10)
+    direct = [t.forward, t.right, t.left, t.backward]
     while count < long:
-        t.pencolor(color_rand(t))
+        t.pencolor(color_rand())
         t.forward(10)
         n = random.randint(0,3)
-        if n==0:
-            t.forward(10)
-        elif n==1:
-            t.right(90)
-        elif n==2:
-            t.left(90)
-        elif n==3:
-            t.backward(10)
+        direct[n](90)
+        # if n==0:
+        #     t.forward(10)
+        # elif n==1:
+        #     t.right(90)
+        # elif n==2:
+        #     t.left(90)
+        # elif n==3:
+        #     t.backward(10)
+        #t.direction(10)
         count +=1
 def nested_shape(t):
     shape(t, 3)
@@ -80,7 +83,18 @@ def nested_shape(t):
     shape(t, 8)
     shape(t, 9)
     shape(t, 10)
-rand_walk(cat, 100)
+
+def circle_graph(t, count = 0):
+    t.speed("fastest")
+    while count <36:
+        t.color(color_rand())
+        t.circle(100)
+        t.right(10)
+        count +=1
+
+circle_graph(cat)
+#nested_shape(cat)
+#rand_walk(cat, 100)
 
 #triangle, square, pentagon, hexagon, heptagon, octagon, nonagon, decagon
 
