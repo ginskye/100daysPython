@@ -22,8 +22,9 @@ for color in colors:
     pos +=30
 racing = True
 while racing:
-    dist = random.randint(0,10)
+    dist = random.randint(0,30)
     for racer in racers:
+        racer.speed("slowest")
         currentx = racer.xcor()
         #print(currentx)
         if currentx>=245:
