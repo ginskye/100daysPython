@@ -7,9 +7,9 @@ RIGHT = 0
 LEFT = 180
 
 def color_rand():
-    first = random.randint(0, 255)
-    second = random.randint(0, 255)
-    third = random.randint(0, 255)
+    first = random.randint(1, 255) #avoid 000=bgcolor
+    second = random.randint(1, 255)
+    third = random.randint(1, 255)
     return(first, second, third)
 class Snake:
     def __init__(self):
@@ -21,35 +21,34 @@ class Snake:
 
     def make_snake(self):
         for place in self.coordinates:
-            seg = t.Turtle("square")
-            seg.penup()
-            t.colormode(255)
-            seg.color(color_rand())
-            seg.goto(place)
-            self.segments.append(seg)
-    def move(self):
-        for seg in range(len(self.segments) - 1, 0, -1):
-            xnew = self.segments[seg - 1].xcor()  # assigns the prior segments coord to current moving segment
-            ynew = self.segments[seg - 1].ycor()
-            self.segments[seg].goto(xnew, ynew)
-            #screen.update()
-            #time.sleep(1)
-        self.segments[0].forward(MOVE)
+            self.new_seg(place)
 
-    def new_seg(self):
-        last = len(self.segments) - 1
-        lastx = self.segments[last].xcor()
-        lasty = self.segments[last].ycor()
+    def new_seg(self, pos):
         newseg = t.Turtle("square")
         newseg.penup()
         t.colormode(255)
         newseg.color(color_rand())
-        newseg.goto(lastx+20, lasty)
+        newseg.goto(pos)
         self.segments.append(newseg)
+
+    def move(self):
+        for segn in range(len(self.segments) - 1, 0, -1):
+            xnew = self.segments[segn - 1].xcor()  # assigns the prior segments coord to current moving segment
+            ynew = self.segments[segn - 1].ycor()
+            self.segments[segn].goto(xnew, ynew)
+            #screen.update()
+            #time.sleep(1)
+        self.head.forward(MOVE)
+
+    def add_seg(self):
+        #last = self.segments[-1] #-1 in python holds last list element
+        #newx = self.segments[last].xcor()+20
+        #lasty = self.segments[last].ycor()
+        self.new_seg(self.segments[-1].position())
 
 
     def down(self):
-        #self.segments[0].setheading(270)
+
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
         self.head.color(color_rand())

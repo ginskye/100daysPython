@@ -7,13 +7,10 @@ class Food(t.Turtle):
         self.shape("circle")
         self.penup()
         self.shapesize(stretch_len=0.5, stretch_wid=0.5)
-        self.color(color_rand())
-        randx = random.randint(-300, 300)
-        randy = random.randint(-300,300)
-        self.goto(randx, randy)
+        self.move()
 
     def move(self):
         self.color(color_rand())
-        randx = random.randint(-300, 300)
-        randy = random.randint(-300, 300)
+        randx = random.randint(-280, 280)
+        randy = random.randint(-280, 280)
         self.goto(randx, randy)
