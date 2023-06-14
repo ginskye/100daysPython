@@ -33,7 +33,7 @@ while game_on:
         ball.y_bounce()
         #change direction
     #paddle collision
-    if (ball.distance(right_paddle) <50 and ball.xcor() > 320) or (ball.distance(left_paddle) < 50 and ball.ycor() < -320):
+    if (ball.distance(right_paddle) <50 and ball.xcor() > 320) or (ball.distance(left_paddle) < 50 and ball.xcor() < -320):
         ball.x_bounce()
 
     if ball.xcor() > 380:
