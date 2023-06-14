@@ -1,11 +1,101 @@
 from turtle import *
-turtle_cat = Turtle()
+import random
 
+
+cat = Turtle()
 screen = Screen()
-screen.exitonclick()
-turtle_cat.shape("turtle")
-turtle_cat.color("deeppink")
+screen.bgcolor("grey")
+cat.shape("turtle")
+cat.color("deeppink")
+colormode(255)
+#cat.pencolor("blue")
 
-dog = Turtle()
-dog.color("red")
-dog.circle(4,9)
+def color_rand():
+    first = random.randint(0, 255)
+    second = random.randint(0, 255)
+    third = random.randint(0, 255)
+    return(first, second, third)
+
+
+def dashed(t, amount):
+    count = 0
+    while count <amount:
+        t.forward(10)
+        t.up()
+        t.forward(10)
+        t.down()
+        count +=1
+def square(turtle, count =0):
+    while count <4:
+        turtle.forward(100)
+        turtle.right(90)
+        count +=1
+
+def dash_square(turtle, count =0):
+    while count <4:
+        #turtle.forward(100)
+        dashed(turtle, 10) # calls dashed line function inside square
+        turtle.right(90)
+        count +=1
+#cat.forward(100)
+#dashed(cat, 50)
+#square(cat)
+#cat.pencolor(color_rand(cat))
+def calc_degrees(sides):
+    """calculates number of degrees for each side of shape of numbered sides"""
+    return (360/sides)
+
+def shape(t, sides, count =0):
+    """Takes in number of sides and turtle object to draw shape with that number sides"""
+    t.pencolor(color_rand())
+    deg = calc_degrees(sides)
+    while count < sides:
+        t.forward(100)
+        t.right(deg)
+        count +=1
+
+def rand_walk(t, long):
+    """returns a random path until it hits the length entered"""
+    count = 0
+    t.pensize(10)
+    direct = [t.forward, t.right, t.left, t.backward]
+    while count < long:
+        t.pencolor(color_rand())
+        t.forward(10)
+        n = random.randint(0,3)
+        direct[n](90)
+        # if n==0:
+        #     t.forward(10)
+        # elif n==1:
+        #     t.right(90)
+        # elif n==2:
+        #     t.left(90)
+        # elif n==3:
+        #     t.backward(10)
+        #t.direction(10)
+        count +=1
+def nested_shape(t):
+    shape(t, 3)
+    shape(t, 4)
+    shape(t, 5)
+    shape(t, 6)
+    shape(t, 7)
+    shape(t, 8)
+    shape(t, 9)
+    shape(t, 10)
+
+def circle_graph(t, count = 0):
+    t.speed("fastest")
+    while count <36:
+        t.color(color_rand())
+        t.circle(100)
+        t.right(10)
+        count +=1
+
+circle_graph(cat)
+#nested_shape(cat)
+#rand_walk(cat, 100)
+
+#triangle, square, pentagon, hexagon, heptagon, octagon, nonagon, decagon
+
+screen.exitonclick()

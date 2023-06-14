@@ -21,7 +21,7 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
-snake.down()
+snake.up()
 while game_on:
     screen.update() #refresh screen
     time.sleep(0.1)
@@ -53,9 +53,9 @@ while game_on:
             print("no collision")
 
     #detect wall collision
-    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        game_on = False
-        player_score.game_over()
+    #if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
+     #   game_on = False
+      #  player_score.game_over()
 
 
     #
