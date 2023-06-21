@@ -67,4 +67,11 @@ class Snake:
             self.head.setheading(RIGHT)
         self.head.color(color_rand())
 
+    def new_game(self):
+        self.clear()
+        self.segments.clear()
+        self.make_snake()
+        self.head = self.segments[0]
+
+
 
